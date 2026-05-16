@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Para o Amor • Feliz Aniversário</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Dancing+Script:wght@500;700&family=Cinzel:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Fundo de céu estrelado fixo -->
+  <div class="sky" id="sky"></div>
+  <div class="moon" aria-hidden="true"></div>
+  <div class="shooting-star-layer" id="shootingLayer" aria-hidden="true"></div>
+
+  <!-- TELA 1: COVER -->
+  <section class="screen cover active" id="screen-cover" aria-label="Boas-vindas">
+    <div class="cover-inner">
+      <p class="cover-subtle">Para o meu Amor</p>
+      <h1 class="cover-title">um segredo<br/><span>brilha aqui</span></h1>
+      <p class="cover-hint">no dia mais importante do ano</p>
+      <button class="open-btn" id="openBtn" aria-label="Toque para descobrir">
+        <span class="open-btn-text">Toque para descobrir</span>
+        <span class="open-btn-icon">✦</span>
+      </button>
+      <p class="cover-footer">com carinho, Bia</p>
+    </div>
+  </section>
+
+  <!-- TELA 2: PERGAMINHO + CARTA -->
+  <section class="screen letter-screen" id="screen-letter" aria-label="Carta">
+    <div class="scroll" id="scroll">
+      <div class="scroll-rod scroll-rod-top" aria-hidden="true"></div>
+      <div class="scroll-body" id="scrollBody">
+        <div class="scroll-content">
+          <h2 class="letter-heading">Para o Amor</h2>
+          <p class="letter-date">no seu aniversário</p>
+
+          <div class="letter-divider" aria-hidden="true">✦</div>
+
+          <p>Sabe, quando o seu aniversário foi chegando, eu fiquei pensando muito no que fazer. Tipo, o que dar pra alguém que já me deu coisas sem nem perceber? Você me deu calma em dias cheios de barulho, atenção nas vezes em que eu nem sabia que precisava, e um tipo de leveza que eu acho que nunca soube ter sozinha.</p>
+
+          <p>Então pensei em fazer isso aqui. Não é nada grande, eu sei, mas é meio que um pedacinho do que eu ando sentindo e não tive coragem de falar olhando no seu olho ainda — acho que se eu tentasse, ia gaguejar inteira.</p>
+
+          <p>A gente se conhece há tão pouco, Amor. Tão pouco que ainda me pego achando estranho como você já tem um espaço meio que reservado aqui dentro. Eu não te chamei pra ocupar nada — foi você que entrou, sem pressa, sem fazer barulho, do jeito que você faz tudo. E quando eu percebi, você já tava.</p>
+
+          <p>Lembra da primeira vez que a gente se viu? Eu tava um nervosismo só. Mãos meio frias, coração batendo num ritmo esquisito, aquela vontade enorme de fugir e ficar ao mesmo tempo. Mas tem uma coisa engraçada: junto com o nervoso, eu me senti confortável. Sei que não faz muito sentido descrever assim, porque uma coisa devia cancelar a outra, né? Mas com você foi diferente. Foi tipo um nervoso bom — daqueles que a gente sente quando percebe que alguma coisa importante tá começando.</p>
+
+          <p>O que mais me pega em você, sério, é o jeito que você me escuta. Não é só prestar atenção. Você escuta de verdade — sem problematizar, sem me fazer sentir errada por estar sentindo o que tô sentindo. Quando eu chego com alguma coisa que tá me incomodando, você não transforma aquilo numa briga, não rebate, não me coloca como exagerada. Você só fica ali, presente, do meu lado. Você não imagina o tanto que isso é raro. Nem o tanto que eu valorizo.</p>
+
+          <p>E o seu jeito leve… esse jeito leve. Eu queria saber explicar direito, mas é como se você soubesse a dose certa de cada coisa comigo. Não pesa, não cobra, não força. É como se você caminhasse junto comigo no meu ritmo — e quando eu olho pro lado, você tá ali, com aquele sorriso meio tranquilo, como quem diz <em>"tá tudo bem, eu fico"</em>.</p>
+
+          <p>Eu ainda tô descobrindo um monte de coisas sobre você. Sobre mim com você. Sobre o que a gente é. E eu gosto disso. Gosto da gente não ter pressa, de ir aprendendo um do outro aos pouquinhos. Mas tem uma coisa que eu já entendi e que eu queria que você soubesse hoje: você virou alguém importante pra mim. Bem importante. Mais rápido do que eu esperava, sabe? E eu não tô com medo disso. Pelo contrário.</p>
+
+          <p>Hoje é o seu dia. E eu quero tanto que ele seja bom. Que tudo nesse novo ano da sua vida venha leve, do jeito que você é. Que você ria muito, que as pessoas que te querem bem te encham de coisas boas, que você consiga cada coisa que tá planejando, e que tudo que te machuca fique cada vez mais longe.</p>
+
+          <p>E, se eu puder, eu quero fazer parte de algumas dessas coisas boas. Quero estar perto. Quero continuar conhecendo você. Quero ver os seus planos virando coisa — e tomara que em alguns desses planos, eu apareça também.</p>
+
+          <p class="letter-final">Feliz aniversário, Amor. De verdade. Aproveita o seu dia inteirinho. Você merece.</p>
+
+          <p class="letter-signature">com carinho<br/><span>— Bia 🤍</span></p>
+
+          <div class="letter-actions">
+            <button class="ghost-btn" id="toConstellation">continuar ✦</button>
+          </div>
+        </div>
+      </div>
+      <div class="scroll-rod scroll-rod-bottom" id="scrollRodBottom" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <!-- TELA 3: CONSTELAÇÃO INTERATIVA -->
+  <section class="screen constellation-screen" id="screen-constellation" aria-label="Constelação">
+    <div class="constellation-inner">
+      <h2 class="screen-title">a nossa constelação</h2>
+      <p class="screen-sub">toque em cada estrela pra descobrir o que eu mais gosto em você</p>
+      <div class="constellation-stage" id="constellationStage" aria-live="polite">
+        <!-- estrelas via JS -->
+      </div>
+      <p class="constellation-revealed" id="constellationRevealed"></p>
+      <div class="constellation-actions">
+        <button class="ghost-btn" id="toWish" disabled>continuar ✦</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- TELA 4: ESTRELA CADENTE / PEDIDO -->
+  <section class="screen wish-screen" id="screen-wish" aria-label="Faça um pedido">
+    <div class="wish-inner">
+      <h2 class="screen-title">faz um pedido</h2>
+      <p class="screen-sub">tá vindo uma estrela cadente — toca nela quando passar</p>
+      <div class="wish-stage" id="wishStage">
+        <div class="wish-trail" id="wishTrail" tabindex="0" role="button" aria-label="Estrela cadente"></div>
+      </div>
+      <p class="wish-result" id="wishResult"></p>
+      <div class="wish-actions">
+        <button class="ghost-btn" id="toCake" disabled>continuar ✦</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- TELA 5: BOLO -->
+  <section class="screen cake-screen" id="screen-cake" aria-label="Bolo de aniversário">
+    <div class="cake-inner">
+      <h2 class="screen-title">agora… sopra as velinhas</h2>
+      <p class="screen-sub">toca em cada chama pra apagar</p>
+
+      <div class="cake-wrap" id="cakeWrap" aria-hidden="false">
+        <!-- velas -->
+        <div class="candles">
+          <div class="candle" data-candle="1"><div class="flame"></div><div class="wick"></div><div class="stick"></div></div>
+          <div class="candle" data-candle="2"><div class="flame"></div><div class="wick"></div><div class="stick"></div></div>
+          <div class="candle" data-candle="3"><div class="flame"></div><div class="wick"></div><div class="stick"></div></div>
+          <div class="candle" data-candle="4"><div class="flame"></div><div class="wick"></div><div class="stick"></div></div>
+          <div class="candle" data-candle="5"><div class="flame"></div><div class="wick"></div><div class="stick"></div></div>
+        </div>
+        <!-- bolo -->
+        <div class="cake">
+          <div class="cake-top"></div>
+          <div class="cake-layer cake-layer-1"></div>
+          <div class="cake-layer cake-layer-2"></div>
+          <div class="cake-plate"></div>
+        </div>
+      </div>
+
+      <p class="cake-status" id="cakeStatus">5 velinhas acesas</p>
+      <div class="cake-actions">
+        <button class="ghost-btn" id="toFinal" disabled>continuar ✦</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- TELA 6: FINAL -->
+  <section class="screen final-screen" id="screen-final" aria-label="Mensagem final">
+    <div class="final-inner">
+      <h2 class="final-title">feliz aniversário,<br/><span>Amor</span></h2>
+      <p class="final-text">que esse seu novo ano venha leve,<br/>cheio de coisas boas — e que eu possa<br/>fazer parte de algumas delas.</p>
+      <p class="final-sig">— Bia 🤍</p>
+      <button class="ghost-btn" id="restartBtn">reviver isso de novo ✦</button>
+    </div>
+  </section>
+
+  <!-- Camada de confetes/luzes para o final -->
+  <canvas id="confettiCanvas" aria-hidden="true"></canvas>
+
+  <script src="script.js"></script>
+</body>
+</html>
