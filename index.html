@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Dancing+Script:wght@500;700&family=Cinzel:wght@500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=3" />
 </head>
 <body>
 
@@ -91,9 +91,13 @@
   <section class="screen wish-screen" id="screen-wish" aria-label="Faça um pedido">
     <div class="wish-inner">
       <h2 class="screen-title">faz um pedido</h2>
-      <p class="screen-sub">tá vindo uma estrela cadente — toca nela quando passar</p>
+      <p class="screen-sub">toca na estrela quando ela passar pela tela ✦</p>
       <div class="wish-stage" id="wishStage">
-        <div class="wish-trail" id="wishTrail" tabindex="0" role="button" aria-label="Estrela cadente"></div>
+        <button class="wish-trail" id="wishTrail" type="button" aria-label="Toque na estrela cadente para fazer um pedido">
+          <span class="wish-tail" aria-hidden="true"></span>
+          <span class="wish-glow" aria-hidden="true"></span>
+          <span class="wish-core" aria-hidden="true">✦</span>
+        </button>
       </div>
       <p class="wish-result" id="wishResult"></p>
       <div class="wish-actions">
@@ -146,6 +150,6 @@
   <!-- Camada de confetes/luzes para o final -->
   <canvas id="confettiCanvas" aria-hidden="true"></canvas>
 
-  <script src="script.js"></script>
+  <script src="script.js?v=3"></script>
 </body>
 </html>

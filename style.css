@@ -478,80 +478,123 @@ body {
   overflow: hidden;
   background: radial-gradient(ellipse at center, rgba(247, 217, 138, 0.04), transparent 70%);
 }
+/* ESTRELA CADENTE — visível, grande, lenta, fácil de tocar */
 .wish-trail {
   position: absolute;
-  top: 12%;
-  left: 80%;
-  width: 80px; height: 80px;
+  top: 15%;
+  left: 78%;
+  width: 120px; height: 120px;
   border: none;
-  border-radius: 50%;
   background: transparent;
   cursor: pointer;
-  animation: wishMove 8s linear infinite;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   z-index: 2;
+  animation: wishMove 14s linear infinite;
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
 }
-.wish-trail::before {
-  /* núcleo brilhante da estrela — sempre bem visível */
-  content: '';
+.wish-trail:focus-visible { outline: none; }
+
+/* a estrelinha em si — um caractere visível com brilho */
+.wish-core {
+  position: relative;
+  z-index: 3;
+  font-size: 56px;
+  line-height: 1;
+  color: #ffffff;
+  font-family: serif;
+  display: inline-block;
+  text-shadow:
+    0 0 8px #ffffff,
+    0 0 16px #fffbe6,
+    0 0 32px #ffe27a,
+    0 0 56px rgba(247, 217, 138, 0.9),
+    0 0 96px rgba(247, 217, 138, 0.5);
+  transition: transform 0.4s ease, color 0.4s ease, text-shadow 0.4s ease;
+  animation: starPulse 2.4s ease-in-out infinite;
+}
+@keyframes starPulse {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  50%      { transform: scale(1.08) rotate(8deg); }
+}
+
+/* o glow ao redor da estrela */
+.wish-glow {
   position: absolute;
   top: 50%; left: 50%;
   transform: translate(-50%, -50%);
-  width: 30px; height: 30px;
+  width: 100px; height: 100px;
   border-radius: 50%;
-  background: radial-gradient(circle, #ffffff 0%, #fffbe6 30%, #ffe27a 60%, rgba(247,217,138,0) 88%);
-  box-shadow:
-    0 0 24px 8px rgba(255, 251, 230, 1),
-    0 0 56px 18px rgba(247, 217, 138, 0.75),
-    0 0 96px 36px rgba(247, 217, 138, 0.4);
-  transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
+  background: radial-gradient(circle,
+    rgba(255, 251, 230, 0.7) 0%,
+    rgba(255, 230, 150, 0.45) 30%,
+    rgba(247, 217, 138, 0.2) 55%,
+    rgba(247, 217, 138, 0) 80%);
+  filter: blur(2px);
+  z-index: 1;
+  transition: transform 0.4s ease, background 0.4s ease;
 }
-.wish-trail::after {
-  /* rastro luminoso */
-  content: '';
+
+/* o rastro luminoso atrás */
+.wish-tail {
   position: absolute;
   top: 50%; left: 50%;
-  margin-left: 16px;
-  width: 200px; height: 4px;
+  margin-left: 32px;
+  width: 220px; height: 6px;
   background: linear-gradient(to right,
     rgba(255, 251, 230, 1) 0%,
-    rgba(255, 235, 175, 0.75) 25%,
-    rgba(247, 217, 138, 0.4) 55%,
+    rgba(255, 235, 175, 0.85) 20%,
+    rgba(247, 217, 138, 0.5) 50%,
+    rgba(247, 217, 138, 0.15) 75%,
     transparent 100%);
   transform: translateY(-50%);
-  border-radius: 4px;
-  filter: blur(0.5px);
+  border-radius: 6px;
+  filter: blur(0.6px);
+  z-index: 0;
   transition: opacity 0.4s ease;
 }
-.wish-trail:hover::before,
-.wish-trail:focus-visible::before,
-.wish-trail:active::before {
-  transform: translate(-50%, -50%) scale(1.18);
-  box-shadow:
-    0 0 32px 12px rgba(255, 251, 230, 1),
-    0 0 76px 26px rgba(247, 217, 138, 0.85);
-}
-.wish-trail:focus-visible { outline: none; }
 
-/* a estrela atravessa a tela SEMPRE dentro da área visível, devagar e em diagonal */
+.wish-trail:hover .wish-core,
+.wish-trail:active .wish-core {
+  color: #fff5d2;
+  text-shadow:
+    0 0 12px #ffffff,
+    0 0 24px #ffe27a,
+    0 0 56px rgba(247, 217, 138, 1),
+    0 0 96px rgba(247, 217, 138, 0.6);
+}
+
+/* a estrela passa SEMPRE dentro da caixa, BEM devagar (14 segundos) */
 @keyframes wishMove {
-  0%   { left: 82%; top: 10%; opacity: 0; }
-  10%  { opacity: 1; }
-  50%  { left: 42%; top: 38%; opacity: 1; }
-  90%  { left: 6%;  top: 66%; opacity: 1; }
-  100% { left: 4%;  top: 70%; opacity: 0; }
+  0%   { left: 80%; top: 12%; opacity: 0; }
+  6%   { opacity: 1; }
+  50%  { left: 44%; top: 40%; opacity: 1; }
+  94%  { left: 6%;  top: 68%; opacity: 1; }
+  100% { left: 4%;  top: 72%; opacity: 0; }
 }
+
 .wish-trail.caught { animation-play-state: paused; }
-.wish-trail.caught::before {
-  background: radial-gradient(circle, #ffffff 0%, #fff5d2 35%, #f7d98a 70%, rgba(247,217,138,0) 90%);
-  transform: translate(-50%, -50%) scale(2);
-  box-shadow:
-    0 0 80px 30px rgba(247, 217, 138, 1),
-    0 0 160px 60px rgba(247, 217, 138, 0.55),
-    0 0 240px 90px rgba(247, 217, 138, 0.25);
+.wish-trail.caught .wish-core {
+  animation: none;
+  color: #fff5d2;
+  transform: scale(1.6) rotate(180deg);
+  text-shadow:
+    0 0 20px #ffffff,
+    0 0 40px #ffe27a,
+    0 0 80px rgba(247, 217, 138, 1),
+    0 0 140px rgba(247, 217, 138, 0.7);
 }
-.wish-trail.caught::after { opacity: 0.25; }
+.wish-trail.caught .wish-glow {
+  transform: translate(-50%, -50%) scale(2.2);
+  background: radial-gradient(circle,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(255, 230, 150, 0.6) 35%,
+    rgba(247, 217, 138, 0) 80%);
+}
+.wish-trail.caught .wish-tail { opacity: 0.2; }
 .wish-result {
   min-height: 3em;
   font-family: var(--font-script);
@@ -812,17 +855,16 @@ body {
   .cs-label { font-size: 1.05rem; }
   .constellation-revealed { font-size: 1rem; padding: 0 0.4rem; min-height: 3em; }
 
-  /* PEDIDO / ESTRELA CADENTE */
-  .wish-stage { height: 260px; }
+  /* PEDIDO / ESTRELA CADENTE — versão mobile */
+  .wish-stage { height: 280px; }
   .wish-trail {
-    width: 88px; height: 88px;   /* alvo de toque GENEROSO */
-    top: 8%;
-    left: 78%;
+    width: 130px; height: 130px;   /* alvo de toque BEM generoso */
   }
-  .wish-trail::before { width: 26px; height: 26px; }
-  .wish-trail::after {
-    width: 130px; height: 3px;
-    margin-left: 13px;
+  .wish-core { font-size: 48px; }
+  .wish-glow { width: 90px; height: 90px; }
+  .wish-tail {
+    width: 150px; height: 5px;
+    margin-left: 26px;
   }
   .wish-result { font-size: 1.2rem; padding: 0 0.4rem; }
 
@@ -860,9 +902,11 @@ body {
   .moon { width: 48px; height: 48px; }
   .screen-title { font-size: 1.85rem; }
   .constellation-stage { height: 280px; }
-  .wish-stage { height: 230px; }
-  .wish-trail { width: 84px; height: 84px; left: 74%; }
-  .wish-trail::after { width: 110px; }
+  .wish-stage { height: 250px; }
+  .wish-trail { width: 120px; height: 120px; }
+  .wish-core { font-size: 42px; }
+  .wish-glow { width: 80px; height: 80px; }
+  .wish-tail { width: 120px; margin-left: 22px; }
   .cake-wrap { transform: scale(0.72); }
   .final-title { font-size: 1.75rem; }
 }
@@ -877,6 +921,6 @@ body {
 
 /* Reduz movimento se o usuário preferir */
 @media (prefers-reduced-motion: reduce) {
-  .star, .cs-star::before, .flame, .wish-trail { animation: none !important; }
+  .star, .cs-star::before, .flame, .wish-trail, .wish-core { animation: none !important; }
   .scroll-body { transition-duration: 0.6s; }
 }
