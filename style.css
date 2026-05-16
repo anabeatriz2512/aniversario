@@ -467,34 +467,76 @@ body {
 }
 .wish-trail {
   position: absolute;
-  top: 12%; left: 110%;
-  width: 14px; height: 14px;
+  top: 8%; left: 100%;
+  width: 64px; height: 64px;
   border-radius: 50%;
-  background: #fffbe6;
-  box-shadow: 0 0 18px 6px rgba(255, 251, 230, 0.75);
+  background: transparent;
   cursor: pointer;
-  animation: wishMove 6.5s linear infinite;
+  animation: wishMove 9s ease-in-out infinite;
   z-index: 2;
 }
-.wish-trail::after {
+.wish-trail::before {
+  /* núcleo brilhante da estrela */
   content: '';
   position: absolute;
-  top: 50%; right: 14px;
-  width: 180px; height: 2px;
-  background: linear-gradient(to left, rgba(255,251,230,0.9), transparent);
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fffbe6 0%, #ffe27a 50%, rgba(247,217,138,0) 80%);
+  box-shadow:
+    0 0 30px 10px rgba(255, 251, 230, 0.9),
+    0 0 70px 22px rgba(247, 217, 138, 0.55),
+    0 0 120px 40px rgba(247, 217, 138, 0.25);
+  transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
+}
+.wish-trail::after {
+  /* rastro luminoso atrás da estrela */
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  margin-left: 12px;
+  width: 280px; height: 4px;
+  background: linear-gradient(to right,
+    rgba(255, 251, 230, 1) 0%,
+    rgba(255, 235, 175, 0.7) 25%,
+    rgba(247, 217, 138, 0.35) 55%,
+    transparent 100%);
   transform: translateY(-50%);
-  border-radius: 2px;
+  border-radius: 4px;
+  filter: blur(0.6px);
+  transition: opacity 0.4s ease;
+}
+.wish-trail:hover::before,
+.wish-trail:focus-visible::before {
+  transform: translate(-50%, -50%) scale(1.15);
+  box-shadow:
+    0 0 40px 14px rgba(255, 251, 230, 1),
+    0 0 90px 30px rgba(247, 217, 138, 0.7);
+}
+.wish-trail:focus-visible {
+  outline: none;
 }
 @keyframes wishMove {
-  0% { left: 105%; top: 10%; }
-  100% { left: -20%; top: 80%; }
+  0%   { left: 104%; top: 8%;  opacity: 0; }
+  8%   { opacity: 1; }
+  50%  { left: 42%;  top: 38%; opacity: 1; }
+  92%  { opacity: 1; }
+  100% { left: -28%; top: 72%; opacity: 0; }
 }
 .wish-trail.caught {
   animation-play-state: paused;
-  transform: scale(1.6);
-  background: var(--gold-bright);
-  box-shadow: 0 0 60px 20px rgba(247, 217, 138, 0.9);
-  transition: transform 0.4s ease;
+}
+.wish-trail.caught::before {
+  background: radial-gradient(circle, #fff5d2 0%, #f7d98a 60%, rgba(247,217,138,0) 90%);
+  transform: translate(-50%, -50%) scale(1.8);
+  box-shadow:
+    0 0 80px 30px rgba(247, 217, 138, 1),
+    0 0 160px 60px rgba(247, 217, 138, 0.5),
+    0 0 240px 90px rgba(247, 217, 138, 0.2);
+}
+.wish-trail.caught::after {
+  opacity: 0.3;
 }
 .wish-result {
   min-height: 3em;
