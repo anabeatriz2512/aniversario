@@ -23,16 +23,29 @@
   --font-display: 'Cinzel', serif;
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
 
 html, body {
   width: 100%;
   min-height: 100vh;
+  min-height: 100dvh;
   background: radial-gradient(ellipse at top, var(--bg-mid) 0%, var(--bg-deep) 70%) fixed;
   color: var(--ivory);
   font-family: var(--font-serif);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  overscroll-behavior-y: none;
+}
+
+button, .open-btn, .ghost-btn, .wish-trail, .cs-star, .candle {
+  touch-action: manipulation;
 }
 
 body {
@@ -467,77 +480,78 @@ body {
 }
 .wish-trail {
   position: absolute;
-  top: 8%; left: 100%;
-  width: 64px; height: 64px;
+  top: 12%;
+  left: 80%;
+  width: 80px; height: 80px;
+  border: none;
   border-radius: 50%;
   background: transparent;
   cursor: pointer;
-  animation: wishMove 9s ease-in-out infinite;
+  animation: wishMove 8s linear infinite;
   z-index: 2;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 .wish-trail::before {
-  /* núcleo brilhante da estrela */
+  /* núcleo brilhante da estrela — sempre bem visível */
   content: '';
   position: absolute;
   top: 50%; left: 50%;
   transform: translate(-50%, -50%);
-  width: 26px; height: 26px;
+  width: 30px; height: 30px;
   border-radius: 50%;
-  background: radial-gradient(circle, #fffbe6 0%, #ffe27a 50%, rgba(247,217,138,0) 80%);
+  background: radial-gradient(circle, #ffffff 0%, #fffbe6 30%, #ffe27a 60%, rgba(247,217,138,0) 88%);
   box-shadow:
-    0 0 30px 10px rgba(255, 251, 230, 0.9),
-    0 0 70px 22px rgba(247, 217, 138, 0.55),
-    0 0 120px 40px rgba(247, 217, 138, 0.25);
+    0 0 24px 8px rgba(255, 251, 230, 1),
+    0 0 56px 18px rgba(247, 217, 138, 0.75),
+    0 0 96px 36px rgba(247, 217, 138, 0.4);
   transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
 }
 .wish-trail::after {
-  /* rastro luminoso atrás da estrela */
+  /* rastro luminoso */
   content: '';
   position: absolute;
   top: 50%; left: 50%;
-  margin-left: 12px;
-  width: 280px; height: 4px;
+  margin-left: 16px;
+  width: 200px; height: 4px;
   background: linear-gradient(to right,
     rgba(255, 251, 230, 1) 0%,
-    rgba(255, 235, 175, 0.7) 25%,
-    rgba(247, 217, 138, 0.35) 55%,
+    rgba(255, 235, 175, 0.75) 25%,
+    rgba(247, 217, 138, 0.4) 55%,
     transparent 100%);
   transform: translateY(-50%);
   border-radius: 4px;
-  filter: blur(0.6px);
+  filter: blur(0.5px);
   transition: opacity 0.4s ease;
 }
 .wish-trail:hover::before,
-.wish-trail:focus-visible::before {
-  transform: translate(-50%, -50%) scale(1.15);
+.wish-trail:focus-visible::before,
+.wish-trail:active::before {
+  transform: translate(-50%, -50%) scale(1.18);
   box-shadow:
-    0 0 40px 14px rgba(255, 251, 230, 1),
-    0 0 90px 30px rgba(247, 217, 138, 0.7);
+    0 0 32px 12px rgba(255, 251, 230, 1),
+    0 0 76px 26px rgba(247, 217, 138, 0.85);
 }
-.wish-trail:focus-visible {
-  outline: none;
-}
+.wish-trail:focus-visible { outline: none; }
+
+/* a estrela atravessa a tela SEMPRE dentro da área visível, devagar e em diagonal */
 @keyframes wishMove {
-  0%   { left: 104%; top: 8%;  opacity: 0; }
-  8%   { opacity: 1; }
-  50%  { left: 42%;  top: 38%; opacity: 1; }
-  92%  { opacity: 1; }
-  100% { left: -28%; top: 72%; opacity: 0; }
+  0%   { left: 82%; top: 10%; opacity: 0; }
+  10%  { opacity: 1; }
+  50%  { left: 42%; top: 38%; opacity: 1; }
+  90%  { left: 6%;  top: 66%; opacity: 1; }
+  100% { left: 4%;  top: 70%; opacity: 0; }
 }
-.wish-trail.caught {
-  animation-play-state: paused;
-}
+.wish-trail.caught { animation-play-state: paused; }
 .wish-trail.caught::before {
-  background: radial-gradient(circle, #fff5d2 0%, #f7d98a 60%, rgba(247,217,138,0) 90%);
-  transform: translate(-50%, -50%) scale(1.8);
+  background: radial-gradient(circle, #ffffff 0%, #fff5d2 35%, #f7d98a 70%, rgba(247,217,138,0) 90%);
+  transform: translate(-50%, -50%) scale(2);
   box-shadow:
     0 0 80px 30px rgba(247, 217, 138, 1),
-    0 0 160px 60px rgba(247, 217, 138, 0.5),
-    0 0 240px 90px rgba(247, 217, 138, 0.2);
+    0 0 160px 60px rgba(247, 217, 138, 0.55),
+    0 0 240px 90px rgba(247, 217, 138, 0.25);
 }
-.wish-trail.caught::after {
-  opacity: 0.3;
-}
+.wish-trail.caught::after { opacity: 0.25; }
 .wish-result {
   min-height: 3em;
   font-family: var(--font-script);
@@ -735,18 +749,130 @@ body {
 .screen { opacity: 0; transition: opacity 1s ease; }
 .screen.active { opacity: 1; }
 
-/* =============== MOBILE =============== */
-@media (max-width: 640px) {
-  .moon { width: 70px; height: 70px; top: 4%; right: 5%; }
+/* =============== MOBILE / iPhone =============== */
+@media (max-width: 760px) {
+  /* respeita o notch e a barra inferior do iPhone */
+  body {
+    padding-top: env(safe-area-inset-top, 0);
+    padding-bottom: env(safe-area-inset-bottom, 0);
+  }
+
+  .screen {
+    padding: 2rem 1.1rem;
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+
+  /* LUA menor */
+  .moon { width: 58px; height: 58px; top: 2.5%; right: 5%; }
   .moon::after { display: none; }
-  .scroll-content { padding: 2rem 1.4rem 1.6rem; font-size: 1rem; line-height: 1.75; }
-  .letter-heading { font-size: 2rem; }
-  .scroll-content p { text-indent: 0.8rem; }
-  .cover-title { font-size: 2.2rem; }
-  .open-btn { padding: 0.85rem 1.6rem; letter-spacing: 0.16em; font-size: 0.85rem; }
-  .constellation-stage { height: 340px; }
-  .cake-wrap { transform: scale(0.85); }
-  .candles { gap: 12px; }
+
+  /* COVER */
+  .cover-subtle { font-size: 1.2rem; margin-bottom: 0.9rem; }
+  .cover-title { font-size: 2.1rem; line-height: 1.2; margin-bottom: 1rem; }
+  .cover-hint { font-size: 0.95rem; margin-bottom: 2rem; }
+  .cover-footer { font-size: 1rem; margin-top: 1.8rem; }
+  .open-btn {
+    padding: 1rem 1.8rem;
+    letter-spacing: 0.16em;
+    font-size: 0.82rem;
+    min-height: 50px;
+  }
+
+  /* PERGAMINHO + CARTA */
+  .letter-screen { padding-top: 1.4rem; padding-bottom: 2rem; }
+  .scroll { width: 94vw; }
+  .scroll-rod { height: 22px; }
+  .scroll-rod::before, .scroll-rod::after { width: 22px; height: 28px; top: -3px; }
+  .scroll-rod::before { left: -10px; }
+  .scroll-rod::after { right: -10px; }
+  .scroll-content {
+    padding: 1.6rem 1.1rem 1.4rem;
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+  .letter-heading { font-size: 1.85rem; }
+  .letter-date { font-size: 0.9rem; }
+  .letter-divider { font-size: 1.1rem; margin: 0.4rem 0 1.2rem; }
+  .scroll-content p { text-indent: 0.6rem; text-align: left; margin-bottom: 0.95rem; }
+  .letter-final { font-size: 1.05rem; }
+  .letter-signature { font-size: 1.25rem; margin-top: 1.6rem !important; }
+  .letter-signature span { font-size: 1.55rem; }
+  .letter-actions { margin-top: 2rem; }
+  .letter-actions .ghost-btn { padding: 0.9rem 1.5rem; }
+
+  /* TÍTULOS INTERNOS */
+  .screen-title { font-size: 2.1rem; }
+  .screen-sub { font-size: 0.95rem; margin-bottom: 1.6rem; padding: 0 0.4rem; }
+
+  /* CONSTELAÇÃO */
+  .constellation-stage { height: 300px; }
+  .cs-star { width: 54px; height: 54px; }
+  .cs-star::before { font-size: 1.7rem; }
+  .cs-label { font-size: 1.05rem; }
+  .constellation-revealed { font-size: 1rem; padding: 0 0.4rem; min-height: 3em; }
+
+  /* PEDIDO / ESTRELA CADENTE */
+  .wish-stage { height: 260px; }
+  .wish-trail {
+    width: 88px; height: 88px;   /* alvo de toque GENEROSO */
+    top: 8%;
+    left: 78%;
+  }
+  .wish-trail::before { width: 26px; height: 26px; }
+  .wish-trail::after {
+    width: 130px; height: 3px;
+    margin-left: 13px;
+  }
+  .wish-result { font-size: 1.2rem; padding: 0 0.4rem; }
+
+  /* BOLO */
+  .cake-wrap {
+    transform: scale(0.78);
+    margin-top: -1rem;
+    margin-bottom: -2.4rem;
+  }
+  .candles { gap: 10px; }
+  .candle { width: 14px; }
+  .cake-status { font-size: 1.18rem; }
+
+  /* FINAL */
+  .final-title { font-size: 2rem; }
+  .final-text { font-size: 1.05rem; line-height: 1.8; }
+  .final-sig { font-size: 1.55rem; margin-bottom: 2rem; }
+
+  /* BOTÕES GHOST — touch friendly */
+  .ghost-btn {
+    padding: 0.95rem 1.6rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    min-height: 46px;
+  }
+}
+
+/* iPhones bem pequenos (SE, mini) */
+@media (max-width: 400px) {
+  .scroll { width: 96vw; }
+  .scroll-content { padding: 1.4rem 0.95rem 1.1rem; font-size: 0.95rem; line-height: 1.65; }
+  .letter-heading { font-size: 1.65rem; }
+  .cover-title { font-size: 1.85rem; }
+  .cover-subtle { font-size: 1.1rem; }
+  .moon { width: 48px; height: 48px; }
+  .screen-title { font-size: 1.85rem; }
+  .constellation-stage { height: 280px; }
+  .wish-stage { height: 230px; }
+  .wish-trail { width: 84px; height: 84px; left: 74%; }
+  .wish-trail::after { width: 110px; }
+  .cake-wrap { transform: scale(0.72); }
+  .final-title { font-size: 1.75rem; }
+}
+
+/* dispositivos bem baixos (iPhone landscape) */
+@media (max-height: 500px) and (orientation: landscape) {
+  .screen { padding: 1.5rem 1rem; }
+  .constellation-stage { height: 220px; }
+  .wish-stage { height: 200px; }
+  .cake-wrap { transform: scale(0.65); margin-bottom: -3rem; }
 }
 
 /* Reduz movimento se o usuário preferir */
