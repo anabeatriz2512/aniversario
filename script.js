@@ -77,11 +77,11 @@
 
   // posições (porcentagens) + qualidades + frases reveladas
   const constellationData = [
-    { x: 14, y: 30, label: 'atencioso',  phrase: 'do jeito mais raro — o tipo de atenção que faz a gente se sentir vista de verdade.' },
-    { x: 32, y: 62, label: 'acolhedor',  phrase: 'me sinto em casa quando você tá por perto, mesmo a gente tendo se conhecido tão pouco.' },
-    { x: 50, y: 22, label: 'leve',       phrase: 'você entrou na minha vida sem fazer barulho, e ficou. esse é o seu tipo de leveza.' },
-    { x: 68, y: 58, label: 'presente',   phrase: 'você não tá só ali — você tá ali pra mim. e isso é coisa pra poucos.' },
-    { x: 84, y: 36, label: 'meu',        phrase: 'meu favorito.' },
+    { x: 14, y: 30, label: 'atencioso',  phrase: 'do jeito que faz a pessoa se sentir ouvida.' },
+    { x: 32, y: 62, label: 'leve',       phrase: 'leveza é o que eu mais curto em você.' },
+    { x: 50, y: 22, label: 'gente boa',  phrase: 'conversar contigo é fácil. é gostoso.' },
+    { x: 68, y: 58, label: 'presente',   phrase: 'você escuta de verdade. coisa rara.' },
+    { x: 84, y: 36, label: 'preferido',  phrase: 'meu preferido ✦' },
   ];
 
   let constellationInitialized = false;
@@ -116,7 +116,7 @@
           setTimeout(() => {
             constellationRevealed.style.opacity = '0';
             setTimeout(() => {
-              constellationRevealed.textContent = 'é isso. essas estrelas, todas juntas, são você pra mim. ✦';
+              constellationRevealed.textContent = 'é isso. essas são as coisas que eu mais curto em você ✦';
               constellationRevealed.style.opacity = '1';
             }, 300);
           }, 1800);
