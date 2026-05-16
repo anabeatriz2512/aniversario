@@ -33,16 +33,18 @@
 html, body {
   width: 100%;
   min-height: 100vh;
-  min-height: 100dvh;
+  height: auto;
   background: radial-gradient(ellipse at top, var(--bg-mid) 0%, var(--bg-deep) 70%) fixed;
   color: var(--ivory);
   font-family: var(--font-serif);
   overflow-x: hidden;
+  overflow-y: auto;
   -webkit-font-smoothing: antialiased;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
-  overscroll-behavior-y: none;
 }
+
+body { min-height: 100dvh; }
 
 button, .open-btn, .ghost-btn, .wish-trail, .cs-star, .candle {
   touch-action: manipulation;
@@ -803,7 +805,6 @@ body {
   .screen {
     padding: 2rem 1.1rem;
     min-height: 100vh;
-    min-height: 100dvh;
   }
 
   /* LUA menor */
